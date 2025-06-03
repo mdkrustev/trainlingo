@@ -1,0 +1,29 @@
+.page {
+    background: #fff;
+    width: 100%;
+    margin: 20px auto 0;
+    font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
+    padding: 20px;
+}
+
+.page-img-container {
+    width: 100%;
+    height: calc(100vh - 60px);
+    
+    img {
+        width: 100%;
+
+    }
+}
+
+.inner-container {
+    width: calc(100% - 320px);
+    margin-right: 10px;
+    margin-top: 60px;
+    .rounded-md {margin-top: 10px;}
+}
+
+.transparent-dark {
+    background-color: rgba(0,0,0,0.4);
+}

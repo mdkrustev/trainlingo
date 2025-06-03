@@ -1,0 +1,128 @@
+{
+  "products": "Produkte",
+  "Login with you Google account": "Mit Ihrem Google-Konto anmelden",
+  "signOut": "Abmelden",
+  "cancel": "Abbrechen",
+  "projects": "Projekte",
+  "users": "Benutzer",
+  "start": "Start",
+  "loading": "Laden",
+  "workTypes": "Arbeitsarten",
+  "newWorkType": "Neue Arbeitsart",
+  "signInWith": "Anmelden mit",
+  "loginFormTitle": "Melden Sie sich mit Ihrem Konto an",
+  "addWorkTypeTitle": "Neue Arbeitsart hinzufügen",
+  "name": "Name",
+  "category": "Kategorie",
+  "addWorkTypeDescription": "Fügen Sie eine neue Arbeitsart zur Liste hinzu für Schätzungen und Planung",
+  "enterName": "Geben Sie einen Namen ein",
+  "selectCategory": "Wählen Sie eine Kategorie aus",
+  "features": {
+    "title": "Warum unsere Plattform wählen?",
+    "template_based_tasks": {
+      "title": "Vordefinierte Arbeitsarten",
+      "description": "Erstellen Sie Mengenerfassungen schneller mithilfe vorbereiteter Vorlagen für gängige Baustellenaufgaben."
+    },
+    "real_time_management": {
+      "title": "Von der Schätzung zur Ausführung",
+      "description": "Wandeln Sie Ihre Mengen in realistische Zeitpläne um und verfolgen Sie den Fortschritt in Echtzeit."
+    },
+    "mobile_workstations": {
+      "title": "Qualitätskontrolle vor Ort",
+      "description": "Führen Sie Audits durch, fügen Sie Fotos und Notizen direkt von der Baustelle aus hinzu."
+    },
+    "cta_button": "Kostenlos testen"
+  },
+  "how_it_works": {
+    "title": "So funktioniert es",
+    "step_1": {
+      "title": "Mengenerfassung erstellen",
+      "description": "Verwenden Sie Vorlagen oder fügen Sie eigene Elemente hinzu, um Materialien und Kosten abzuschätzen."
+    },
+    "step_2": {
+      "title": "Projektzeitplan erstellen",
+      "description": "Erstellen Sie automatisch einen Zeitplan basierend auf Mengen und verfügbaren Ressourcen."
+    },
+    "step_3": {
+      "title": "Überwachen & Audit vor Ort",
+      "description": "Verfolgen Sie den Fortschritt, führen Sie Qualitätskontrollen durch und verwalten Sie Probleme in Echtzeit."
+    },
+    "cta_button": "Jetzt kostenlos starten"
+  },
+  "testimonials": {
+    "title": "Kundenrezensionen",
+    "one": {
+      "quote": "Wir haben Fehlschätzungen um über 50 % reduziert und das Projektmanagement sofort verbessert.",
+      "author": "Peter Ivanov, Bauleiter"
+    },
+    "two": {
+      "quote": "Perfektes Tool für kleine Unternehmen, die sowohl Schätzungen als auch Baustellenkontrolle benötigen – ohne Komplexität.",
+      "author": "Maria Petrova, Ingenieurin"
+    },
+    "three": {
+      "quote": "Unser gesamter Workflow basiert auf dieser Plattform – von der Offerte bis zur Endabnahme.",
+      "author": "Dimitar K., Projektleiter"
+    }
+  },
+  "cta": {
+    "title": "Bereit, intelligenter zu bauen?",
+    "subtitle": "Verwalten Sie Ihre Projekte von der Schätzung bis zum Audit – alles an einem Ort.",
+    "button": "Kostenlos registrieren"
+  },
+  "faq": {
+    "title": "Häufig gestellte Fragen",
+    "q1": {
+      "question": "Ist diese Plattform für kleine Bauteams geeignet?",
+      "answer": "Ja! Speziell für kleine Unternehmen entwickelt, die Mengenerfassung, Planung und Qualitätskontrolle benötigen."
+    },
+    "q2": {
+      "question": "Kann ich offline arbeiten?",
+      "answer": "Ja, Sie können Formulare offline ausfüllen und später synchronisieren."
+    },
+    "q3": {
+      "question": "Bieten Sie Unterstützung während der Implementierung an?",
+      "answer": "Ja, wir bieten Setup-Anleitung und kontinuierliche Support-Dienste für alle Benutzer."
+    },
+    "cta_button": "Kontaktieren Sie uns"
+  },
+  "footer": {
+    "companyDescription": "All-in-one-Lösung für Mengenerfassung, Projektplanung und Qualitätskontrolle vor Ort.",
+    "company": {
+      "title": "Unternehmen",
+      "about": "Über uns",
+      "contact": "Kontakt",
+      "features": "Funktionen"
+    },
+    "legal": {
+      "title": "Rechtliches",
+      "terms": "Nutzungsbedingungen",
+      "privacy": "Datenschutzrichtlinie",
+      "faq": "FAQ"
+    },
+    "newsletter": {
+      "title": "Bleiben Sie informiert",
+      "description": "Abonnieren Sie unseren Newsletter für Updates und Bau-Tipps.",
+      "placeholder": "Ihre E-Mail",
+      "button": "Abonnieren"
+    },
+    "copyright": "Alle Rechte vorbehalten."
+  },
+  "workTypeCategories": {
+    "preparation": "Vorbereitung",
+    "foundation": "Grundbau",
+    "rough_construction": "Rohbau",
+    "roofing": "Dacharbeiten",
+    "facade": "Fassade",
+    "interior_works": "Innenausbau"
+  },
+  "validation": {
+    "required": "Dieses Feld ist erforderlich"
+  },
+  "hero_section": {
+    "title_line1": "Messen. Verwalten. Überwachen.",
+    "title_line2": "Alles an einem Ort.",
+    "description_line1": "Von Mengenerfassungen bis hin zu Projektzeiten und Qualitätskontrolle vor Ort",
+    "description_line2": "Perfekt für kleine Bauteams",
+    "explore_services": "Funktionen entdecken"
+  }
+}

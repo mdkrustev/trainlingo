@@ -1,0 +1,23 @@
+{
+    "appTitle": "Trainlingo",
+    "logInGoogle": "Log in with your Google account",
+    "logIn": "Log in",
+    "logOut": "Log out",
+    "cancel": "Cancel",
+    "projects": "Projects",
+    "users": "Users",
+    "start": "Start",
+    "loading": "Loading",
+    "workTypes": "Work types",
+    "newWorkType": "New work type",
+    "signInWith": "Sign in with",
+    "loginFormTitle": "Log in to your account",
+    "addWorkTypeTitle": "Add New Work Type",
+    "editWorkType": "Edit Work Type",
+    "name": "Name",
+    "category": "Category",
+    "addWorkTypeDescription": "Add a new work type to your list for estimates and planning",
+    "editWorkTypeDescription": "Edit selected Work Type",
+    "enterName": "Enter a name",
+    "selectCategory": "Select a category"
+}
