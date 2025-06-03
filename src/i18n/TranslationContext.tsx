@@ -9,14 +9,12 @@ import {
 } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
 
+// Тип за вложени преводи (обекти в обекти)
 interface NestedTranslations {
-  [key: string]: NestedTranslations[keyof NestedTranslations] extends never
-    ? never
-    : NestedTranslations[keyof NestedTranslations] extends string
-    ? string
-    : NestedTranslations;
+  [key: string]: string | NestedTranslations
 }
-type Translations = NestedTranslations;
+
+type Translations = NestedTranslations
 
 interface TranslationContextType {
   t: (key: string) => string
@@ -37,26 +35,45 @@ export function TranslationProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const load = async () => {
       try {
-        const module = await import(`@/i18n/locales/${locale}.json`)
-        setDict(module.default)
+        const translationModule = await import(`@/i18n/locales/${locale}.json`)
+        setDict(translationModule.default)
+        
+        setDict({
+          welcome: {
+            title: 'Welcome',
+            message: 'Hello, world!',
+          },
+          not_found: 'Not Found',
+        })
       } catch (e) {
         console.error(`Missing translation for ${locale}`, e)
         setDict({})
       }
     }
+
     load()
   }, [locale])
 
   const t = (key: string): string => {
+    if (!dict) return key
+
     const keys = key.split('.')
-    let value: any = dict
+    let value: NestedTranslations | string | undefined = dict
 
     for (const k of keys) {
-      if (!value || !value[k]) return key
+      if (!value || typeof value !== 'object' || !Object.hasOwn(value, k)) {
+        console.warn(`Translation missing for key: "${key}"`)
+        return key
+      }
       value = value[k]
     }
 
-    return value as string
+    if (typeof value === 'string') {
+      return value
+    }
+
+    console.warn(`Translation is not a string for key: "${key}"`)
+    return key
   }
 
   const switchLanguage = (newLocale: string) => {

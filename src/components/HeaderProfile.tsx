@@ -3,7 +3,7 @@
 import { LogOutIcon, UserIcon } from "lucide-react"
 import { useSession } from "next-auth/react"
 import type { MenuProps } from 'antd';
-import { Avatar, Dropdown, Space } from 'antd';
+import { Avatar, Dropdown } from 'antd';
 
 import { useRouter } from 'next/navigation'
 import { useTranslationContext } from "@/i18n/TranslationContext"
@@ -15,15 +15,7 @@ export default function HeaderProfile() {
   const { t, locale } = useTranslationContext()
   const { data: session } = useSession()
   const [isSigningOut, setIsSigningOut] = useState(false)
-  const [openUserMenu, setOpenUserMenu] = useState(false)
 
-  const getInitials = (name?: string | null) => {
-    return name
-      ?.split(' ')
-      .map(part => part[0])
-      .join('')
-      .toUpperCase() || '?'
-  }
 
   useEffect(() => {
     if (isSigningOut && !session?.user) {
@@ -42,7 +34,7 @@ export default function HeaderProfile() {
       key: 1,
       label: (
         <div className="cursor-pointer" onClick={handleSignOut}>
-          {t('logOut')}
+          <LogOutIcon/> {t('logOut')}
         </div>
       ),
     }

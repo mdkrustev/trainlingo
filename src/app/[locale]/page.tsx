@@ -8,7 +8,7 @@ import { useEffect } from 'react'
 //import AddWorkType from '@/components/AddWorkType'
 
 export default function Home() {
-  const { t, locale } = useTranslationContext()
+  const { locale } = useTranslationContext()
   const { data: session, status } = useSession()
   const router = useRouter()
 

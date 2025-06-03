@@ -15,7 +15,7 @@ export default function HeaderAuth() {
         setValue('openLoginForm', true);
     };
 
-    const handleCancel = (e: React.MouseEvent<HTMLElement>) => {
+    const handleCancel = () => {
         setValue('openLoginForm', false);
     };
 

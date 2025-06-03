@@ -24,7 +24,6 @@ interface DynamicValues {
 interface DynamicValueContextType {
     values: DynamicValues;
     setValue: <K extends DynamicValueKey>(key: K, value: DynamicValues[K]) => void;
-    removeValue: (key: DynamicValueKey) => void;
 }
 
 const DynamicValueContext = createContext<DynamicValueContextType | undefined>(undefined);
@@ -50,15 +49,9 @@ export const DynamicValueProvider: React.FC<{ children: React.ReactNode }> = ({ 
         }));
     };
 
-    const removeValue = (key: DynamicValueKey) => {
-        const { [key]: _, ...rest } = values;
-        setValues(rest);
-    };
-
     const contextValue = {
         values,
         setValue,
-        removeValue,
     };
 
     return (

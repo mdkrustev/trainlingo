@@ -4,17 +4,18 @@ import Link from "next/link";
 import HeaderAuth from "./HeaderAuth";
 import HeaderLanguages from "./HeaderLanguages";
 import { useTranslationContext } from '@/i18n/TranslationContext'
+import Image from "next/image";
 
 export default function HeaderBar() {
 
-    const { t, locale, localizePath } = useTranslationContext();
+    const { localizePath } = useTranslationContext();
 
     return (
         <header className="bg-white h-[60px] fixed z-10 w-full shadow-2xs p-[15px]">
             <nav aria-label="Global" className="flex w-full justify-between">
                 <div className="flex">
                     <Link href={localizePath('/')} className="cursor-pointer block h-7">
-                        <img alt="" src="/img/trainlingo-logo.svg" className="h-full w-auto" />
+                    <Image alt="" src="/img/trainlingo-logo.svg" className="h-full w-auto" />
                     </Link>
                 </div>
                 <div className="flex flex-grow">

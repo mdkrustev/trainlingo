@@ -1,27 +1,21 @@
-/*
-  Warnings:
-
-  - You are about to drop the column `role` on the `User` table. All the data in the column will be lost.
-  - You are about to drop the `WorkType` table. If the table is not empty, all the data it contains will be lost.
-
-*/
 -- CreateEnum
 CREATE TYPE "QuestionType" AS ENUM ('NATIVE_TO_DE', 'NATIVE_TO_EN', 'EN_TO_NATIVE', 'DE_TO_NATIVE', 'MIXED');
 
 -- CreateEnum
 CREATE TYPE "QuizType" AS ENUM ('DEFAULT', 'FLASHCARD', 'TIMED');
 
--- AlterTable
-ALTER TABLE "User" DROP COLUMN "role";
+-- CreateTable
+CREATE TABLE "User" (
+    "id" TEXT NOT NULL,
+    "name" TEXT,
+    "email" TEXT NOT NULL,
+    "googleId" TEXT NOT NULL,
+    "active" BOOLEAN NOT NULL DEFAULT true,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
 
--- DropTable
-DROP TABLE "WorkType";
-
--- DropEnum
-DROP TYPE "Role";
-
--- DropEnum
-DROP TYPE "WorkTypeCategoriesKey";
+    CONSTRAINT "User_pkey" PRIMARY KEY ("id")
+);
 
 -- CreateTable
 CREATE TABLE "Topic" (
@@ -86,6 +80,12 @@ CREATE TABLE "DictionaryQuizEntry" (
 
     CONSTRAINT "DictionaryQuizEntry_pkey" PRIMARY KEY ("id")
 );
+
+-- CreateIndex
+CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "User_googleId_key" ON "User"("googleId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "DictionaryToTopic_topicId_key" ON "DictionaryToTopic"("topicId");

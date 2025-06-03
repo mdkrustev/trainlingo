@@ -4,7 +4,6 @@ import type { Metadata } from "next";
 import "../style/globals.css";
 import Providers from "@/components/Providers";
 import HeaderBar from "@/components/HeaderBar";
-import '@ant-design/v5-patch-for-react-19';
 import { dir } from 'i18next';
 
 export const metadata: Metadata = {
