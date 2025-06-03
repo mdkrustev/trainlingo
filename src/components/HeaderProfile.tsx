@@ -33,8 +33,8 @@ export default function HeaderProfile() {
     {
       key: 1,
       label: (
-        <div className="cursor-pointer" onClick={handleSignOut}>
-          <LogOutIcon/> {t('logOut')}
+        <div className="cursor-pointer flex" onClick={handleSignOut}>
+          <LogOutIcon size={16} className="mt-[3px] mr-[5px]" /> {t('logOut')}
         </div>
       ),
     }

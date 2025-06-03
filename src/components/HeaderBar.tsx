@@ -4,7 +4,7 @@ import Link from "next/link";
 import HeaderAuth from "./HeaderAuth";
 import HeaderLanguages from "./HeaderLanguages";
 import { useTranslationContext } from '@/i18n/TranslationContext'
-import Image from "next/image";
+import TrainLingoLogo from "@/assets/logo";
 
 export default function HeaderBar() {
 
@@ -15,7 +15,7 @@ export default function HeaderBar() {
             <nav aria-label="Global" className="flex w-full justify-between">
                 <div className="flex">
                     <Link href={localizePath('/')} className="cursor-pointer block h-7">
-                    <Image alt="" src="/img/trainlingo-logo.svg" className="h-full w-auto" />
+                        <TrainLingoLogo/>
                     </Link>
                 </div>
                 <div className="flex flex-grow">

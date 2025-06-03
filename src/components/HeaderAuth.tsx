@@ -5,6 +5,7 @@ import GoogleIcon from "./ui/icons/GoogleIcon";
 import HeaderProfile from "./HeaderProfile";
 import { useDynamicValue } from "@/contexts/DynamicValueContext";
 import { Button, Modal, Spin } from "antd";
+import { LogInIcon } from "lucide-react";
 
 export default function HeaderAuth() {
 
@@ -19,14 +20,14 @@ export default function HeaderAuth() {
         setValue('openLoginForm', false);
     };
 
-    if (status === "loading") return <div className="p-[5px]"><Spin spinning={true} /></div>;
+    if (status === "loading") return <div className="pr-[5px]"><Spin spinning={true} /></div>;
     return (
         <>
             {session ? (
                 <HeaderProfile />
             ) : (
                 <div className="">
-                    <Button onClick={showModal}>{t('logIn')}</Button>
+                    <Button onClick={showModal}><LogInIcon size={16} /> {t('logIn')}</Button>
                 </div>
             )}
 

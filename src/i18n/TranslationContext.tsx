@@ -9,7 +9,6 @@ import {
 } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
 
-// Тип за вложени преводи (обекти в обекти)
 interface NestedTranslations {
   [key: string]: string | NestedTranslations
 }
@@ -37,14 +36,6 @@ export function TranslationProvider({ children }: { children: ReactNode }) {
       try {
         const translationModule = await import(`@/i18n/locales/${locale}.json`)
         setDict(translationModule.default)
-        
-        setDict({
-          welcome: {
-            title: 'Welcome',
-            message: 'Hello, world!',
-          },
-          not_found: 'Not Found',
-        })
       } catch (e) {
         console.error(`Missing translation for ${locale}`, e)
         setDict({})
