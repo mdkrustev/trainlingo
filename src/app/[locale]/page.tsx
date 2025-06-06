@@ -3,12 +3,11 @@
 import '../style/page.scss'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
-import { useTranslationContext } from '@/i18n/TranslationContext'
 import { useEffect } from 'react'
 //import AddWorkType from '@/components/AddWorkType'
 
-export default function Home() {
-  const { locale } = useTranslationContext()
+export default function Page() {
+  
   const { data: session, status } = useSession()
   const router = useRouter()
 
@@ -18,15 +17,17 @@ export default function Home() {
     if (session?.user) {
       //router.push(`/${locale}/start`)
     }
-  }, [session?.user, router, locale])
+  }, [session?.user, router])
 
   if (loading || session?.user) {
     return null
   }
-
+  
+  
   return (
     <div className="content">
-   
+      <h1>Test</h1>
+            <h1>Test</h1>      <h1>Test</h1>      <h1>Test</h1>      <h1>Test</h1>      <h1>Test</h1>      <h1>Test</h1>      <h1>Test</h1>
     </div>
   )
 }

@@ -1,3 +1,4 @@
+"use client"
 export default function BgFlag() {
     return (
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" width="22" height="20">

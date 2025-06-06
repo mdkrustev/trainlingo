@@ -6,13 +6,11 @@ import type { MenuProps } from 'antd';
 import { Avatar, Dropdown } from 'antd';
 
 import { useRouter } from 'next/navigation'
-import { useTranslationContext } from "@/i18n/TranslationContext"
 import { useEffect, useState } from 'react'
 import { signOut } from 'next-auth/react'
 
 export default function HeaderProfile() {
   const router = useRouter()
-  const { t, locale } = useTranslationContext()
   const { data: session } = useSession()
   const [isSigningOut, setIsSigningOut] = useState(false)
 
@@ -20,9 +18,9 @@ export default function HeaderProfile() {
   useEffect(() => {
     if (isSigningOut && !session?.user) {
       alert('test')
-      router.push(`/${locale}`)
+      router.push('')
     }
-  }, [session?.user, isSigningOut, locale, router])
+  }, [session?.user, isSigningOut, router])
 
   const handleSignOut = async () => {
     setIsSigningOut(true)
@@ -34,7 +32,7 @@ export default function HeaderProfile() {
       key: 1,
       label: (
         <div className="cursor-pointer flex" onClick={handleSignOut}>
-          <LogOutIcon size={16} className="mt-[3px] mr-[5px]" /> {t('logOut')}
+          <LogOutIcon size={16} className="mt-[3px] mr-[5px]" /> {'logOut'}
         </div>
       ),
     }
