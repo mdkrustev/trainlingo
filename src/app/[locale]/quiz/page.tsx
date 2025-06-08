@@ -3,11 +3,11 @@
 import ProtectedRoute from "@/contexts/ProtectedRoute";
 import { useTranslations } from "@/hooks/useTranslations"
 
-export default function Topics() {
+export default function Quiz() {
     const { t } = useTranslations();
     return (
         <ProtectedRoute>
-            <h1 className="">{t.navi.topics}</h1>
+            <h1 className="">{t.navi.quiz}</h1>
         </ProtectedRoute>
     )
 }

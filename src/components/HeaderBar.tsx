@@ -4,23 +4,24 @@ import Link from "next/link";
 import HeaderAuth from "./HeaderAuth";
 import HeaderLanguages from "./HeaderLanguages";
 import TrainLingoLogo from "@/assets/logo";
-import { useTranslations } from "@/hooks/useTranslations";
+import Navigation from "./Navigation";
+import { useSession } from "next-auth/react";
 
 export default function HeaderBar() {
 
-    const {t} = useTranslations();
 
+    const { data: session } = useSession()
     return (
         <header className="bg-white h-[60px] fixed z-10 w-full shadow-2xs p-[15px]">
             <nav aria-label="Global" className="flex w-full justify-between">
                 <div className="flex">
                     <Link href={'/'} className="cursor-pointer block h-7">
-                        <TrainLingoLogo/>
+                        <TrainLingoLogo />
                     </Link>
                 </div>
                 <div className="flex flex-grow">
                     <div className="flex flex-grow justify-center gap-5">
-                        <Link href={'/'}>{t.home}</Link>
+                        {session?.user && <Navigation />}
                     </div>
                     <div className="flex">
                         <HeaderLanguages />

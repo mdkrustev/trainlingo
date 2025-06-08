@@ -5,12 +5,12 @@ import HeaderProfile from "./HeaderProfile";
 import { useDynamicValue } from "@/contexts/DynamicValueContext";
 import { Button, Modal, Spin } from "antd";
 import { LogInIcon } from "lucide-react";
-//import { useTranslations } from "@/hooks/useTranslations";
+import { useTranslations } from "@/hooks/useTranslations";
 
 export default function HeaderAuth() {
 
     const { data: session, status } = useSession();
-    //const {t} = useTranslations()
+    const {t} = useTranslations()
 
     const { values, setValue } = useDynamicValue()
     const showModal = () => {
@@ -28,18 +28,18 @@ export default function HeaderAuth() {
                 <HeaderProfile />
             ) : (
                 <div className="">
-                    <Button onClick={showModal}><LogInIcon size={16} /> {'logIn'}</Button>
+                    <Button onClick={showModal}><LogInIcon size={16} /> {t.auth.logIn}</Button>
                 </div>
             )}
 
             <Modal
-                title={<div className="text-center">{`Login`}</div>}
+                title={<div className="text-center">{t.auth.login}</div>}
                 open={values.openLoginForm}
                 onCancel={handleCancel}
                 footer={null}
             >
                 <div className="text-center pt-[30px] pb-[30px]">
-                    <Button style={{ height: '40px' }} onClick={() => signIn('google')}><GoogleIcon />{'gog'}</Button>
+                    <Button style={{ height: '40px' }} onClick={() => signIn('google')}><GoogleIcon />{t.auth.loginGoogle}</Button>
                 </div>
             </Modal>
         </>

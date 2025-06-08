@@ -25,7 +25,7 @@ export default function HeaderLanguages() {
         </Button>
       ),
     },
-    {
+    /*{
       key: 'de',
       label: (
         <Button type="link" onClick={() => changeLanguage('de')} className="flex items-center">
@@ -42,7 +42,7 @@ export default function HeaderLanguages() {
           <span className="text-black">BG</span>
         </Button>
       ),
-    },
+    },*/
   ];
 
   return (

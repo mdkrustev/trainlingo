@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { locales, getLocaleFromPath } from './utils/i18n';
 
 export function middleware(request: Request) {
+
   const url = new URL(request.url);
   const pathname = url.pathname;
 
@@ -9,13 +10,11 @@ export function middleware(request: Request) {
   const existingLocale = locales.find(locale => pathname.startsWith(`/${locale}`));
 
   if (existingLocale) {
-    // Locale is present in the URL, set it in cookie and proceed
     const response = NextResponse.next();
     response.cookies.set('NEXT_LOCALE', existingLocale);
     return response;
   }
 
-  // Skip static files or API routes
   if (pathname.includes('.')) {
     return NextResponse.next();
   }
@@ -26,8 +25,7 @@ export function middleware(request: Request) {
   // Redirect to localized path
   const redirectUrl = new URL(`/${locale}${pathname}`, request.url);
   const response = NextResponse.redirect(redirectUrl);
-  response.cookies.set('NEXT_LOCALE', locale); // Save locale in cookie
-
+  response.cookies.set('NEXT_LOCALE', locale);
   return response;
 }
 

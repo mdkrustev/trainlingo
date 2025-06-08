@@ -16,11 +16,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: appName,
     description: 'Agentra is a smart CRM platform for real estate agencies...',
-    url: 'https://trainlingo.vercel.app',    
+    url: 'https://trainlingo.vercel.app',
     siteName: appName,
     images: [
       {
-        url: 'https://trainlingo.vercel.app/img/logo.png',    
+        url: 'https://trainlingo.vercel.app/img/logo.png',
         width: 512,
         height: 512,
         alt: appName,
@@ -32,15 +32,18 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   // Четем кукито NEXT_LOCALE
+
   const localeCookie = (await cookies()).get('NEXT_LOCALE');
-  const locale = localeCookie?.value || 'de'; // по подразбиране 'en'
+  const locale = localeCookie?.value || 'en'; // по подразбиране 'en'
 
   return (
     <Providers>
       <html lang={locale}>
         <body>
           <HeaderBar />
-          {children}
+          <div className="pt-[70px]">
+            <div className='p-3'>{children}</div>
+          </div>
         </body>
       </html>
     </Providers>

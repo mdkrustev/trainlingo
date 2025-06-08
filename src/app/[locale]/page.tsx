@@ -2,32 +2,20 @@
 
 import '../style/page.scss'
 import { useSession } from 'next-auth/react'
-import { useRouter } from 'next/navigation'
-import { useEffect } from 'react'
-//import AddWorkType from '@/components/AddWorkType'
+import Home from './home/page'
+import PublicHome from './public'
+import { Suspense } from 'react'
+import { useTranslations } from '@/hooks/useTranslations'
 
 export default function Page() {
-  
   const { data: session, status } = useSession()
-  const router = useRouter()
-
-  const loading = status === 'loading'
-
-  useEffect(() => {
-    if (session?.user) {
-      //router.push(`/${locale}/start`)
-    }
-  }, [session?.user, router])
-
-  if (loading || session?.user) {
-    return null
+  const {t} = useTranslations();
+  if (status === 'loading') {
+    return <div>{t.loading} ...</div>
   }
-  
-  
   return (
-    <div className="content">
-      <h1>Test</h1>
-            <h1>Test</h1>      <h1>Test</h1>      <h1>Test</h1>      <h1>Test</h1>      <h1>Test</h1>      <h1>Test</h1>      <h1>Test</h1>
-    </div>
+    <Suspense fallback={`${t.loading} ...`}>
+      {session?.user ? <Home /> : <PublicHome />}
+    </Suspense>
   )
 }
