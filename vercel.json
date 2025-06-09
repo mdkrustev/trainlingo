@@ -10,13 +10,5 @@
     "env": {
       "PRISMA_GENERATE": "true"
     }
-  },
-  "functions": {
-    "api/**.ts": {
-      "regions": ["fra1"]
-    },
-    "api/**.js": {
-      "regions": ["fra1"]
-    }
   }
 }

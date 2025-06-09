@@ -2,6 +2,12 @@ import prisma from "@/lib/prisma";
 import { authenticate } from "@/lib/useAuthentication";
 import { NextResponse } from "next/server";
 
+
+export const config = {
+  runtime: 'nodejs',
+  region: 'fra1', // Deploy to Frankfurt
+};
+
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
 

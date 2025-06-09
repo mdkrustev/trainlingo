@@ -2,6 +2,11 @@ import prisma from "@/lib/prisma";
 import { authenticate } from "@/lib/useAuthentication";
 import { NextResponse } from "next/server";
 
+export const config = {
+  runtime: 'nodejs',
+  region: 'fra1', // Deploy to Frankfurt
+};
+
 export async function POST(request: Request) {
     try {
 
