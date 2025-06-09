@@ -1,6 +1,6 @@
 "use client";
 import { useSession, signIn } from "next-auth/react";
-import GoogleIcon from "./ui/icons/GoogleIcon";
+import GoogleIcon from "../ui/icons/GoogleIcon";
 import HeaderProfile from "./HeaderProfile";
 import { useDynamicValue } from "@/contexts/DynamicValueContext";
 import { Button, Modal, Spin } from "antd";

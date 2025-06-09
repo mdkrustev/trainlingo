@@ -14,7 +14,40 @@ export const translations = {
       logOut: "Log Out",
       login: "Login",
       loginGoogle: "Log In With your Google account",
-      
+    },
+    action: {
+      addItem: "Add new item"
+    },
+    form: {
+      errors: {
+        required: 'This field is required',
+        number: 'Must be a number',
+        email: 'Must be a valid email',
+      },
+      dataSent: "Data has been successfully sent!",
+      errorSending: "Error sending data.",
+      errorOccurred: "An error occurred.",
+      select: "Select item",
+      name: 'Name',
+      category: 'Category',
+      count: 'Count',
+      save: 'Save',
+      cancel: 'Cancel'
+    },
+    title: {
+      newTopic: "New Topic"
+    },
+    youtubeVideoId: "Youtube Video ID",
+    lng: "Language",
+    lg: {
+      en: "English",
+      de: "German",
+    },
+    categories: {
+      news: "News",
+      documentary: "Documentary",
+      podcast: "Podcast",
+      lessons: "Learning lessons", 
     }
 
   },

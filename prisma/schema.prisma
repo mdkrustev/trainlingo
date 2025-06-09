@@ -23,68 +23,77 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  topics Topic[]
+  topics  Topic[]
   quizzes DictionaryQuiz[]
 }
 
 model Topic {
-  id             String            @id @default(uuid())
-  youtubeUrl     String?
+  id             String              @id @default(uuid())
+  youtubeVideoId String?
   name           String?
   categoryKey    String?
+  languageKey    String?
   ownerId        String
-  owner          User              @relation(fields: [ownerId], references: [id])
-  dictionaryRefs DictionaryToTopic @relation(name: "DictionaryToTopicToTopic", fields: [id], references: [topicId])
-  createdAt      DateTime          @default(now())
-  updatedAt      DateTime          @updatedAt
+  owner          User                @relation(fields: [ownerId], references: [id])
+  createdAt      DateTime            @default(now())
+  updatedAt      DateTime            @updatedAt
+
+  // Добавяме обратната връзка към DictionaryToTopic:
+  dictionaryRefs DictionaryToTopic[]
 }
 
 model Dictionary {
-  id           String            @id @default(uuid())
+  id           String                @id @default(uuid())
   wordEn       String?
   wordDe       String?
   wordNative   String?
   contextEn    String?
   contextDe    String?
   contextNativ String?
-  topicRefs    DictionaryToTopic @relation(name: "DictionaryToTopicToDictionary", fields: [id], references: [dictionaryId])
-  createdAt    DateTime          @default(now())
-  updatedAt    DateTime          @updatedAt
+  createdAt    DateTime              @default(now())
+  updatedAt    DateTime              @updatedAt
+
   quizEntries  DictionaryQuizEntry[]
+
+  // Връзка към DictionaryToTopic
+  topicRefs    DictionaryToTopic[]
 }
 
 model DictionaryToTopic {
-  topicId      String      @unique
-  dictionaryId String      @unique
-  topic        Topic?      @relation(name: "DictionaryToTopicToTopic")
-  dictionary   Dictionary? @relation(name: "DictionaryToTopicToDictionary")
-  @@id([topicId, dictionaryId])
+  id           Int                   @id @default(autoincrement())
+  topicId      String
+  dictionaryId String
+
+  topic        Topic                 @relation(fields: [topicId], references: [id])
+  dictionary   Dictionary            @relation(fields: [dictionaryId], references: [id])
+
+  @@unique([topicId, dictionaryId]) // уникална комбинация от тема и дума
 }
 
 model DictionaryQuiz {
-  id            String               @id @default(uuid())
-  userId        String
-  user          User                 @relation(fields: [userId], references: [id])
-  startedAt     DateTime             @default(now())
-  finishedAt    DateTime?
-  entries       DictionaryQuizEntry[]
-  quizType      QuizType
-  durationSec   Int                 
-  correctCount  Int                  @default(0)
-  totalCount    Int                  @default(0)
+  id           String                @id @default(uuid())
+  userId       String
+  user         User                  @relation(fields: [userId], references: [id])
+  startedAt    DateTime              @default(now())
+  finishedAt   DateTime?
+  entries      DictionaryQuizEntry[]
+  quizType     QuizType
+  durationSec  Int
+  correctCount Int                   @default(0)
+  totalCount   Int                   @default(0)
 }
 
 model DictionaryQuizEntry {
-  id            String               @id @default(uuid())
-  quizId        String
-  quiz          DictionaryQuiz       @relation(fields: [quizId], references: [id])
-  dictionaryId  String
-  dictionary    Dictionary           @relation(fields: [dictionaryId], references: [id])
-  questionType  QuestionType
-  answerGiven   String?
-  isCorrect     Boolean
-  timeTakenSec  Int
-  askedAt       DateTime             @default(now())
+  id           String         @id @default(uuid())
+  quizId       String
+  quiz         DictionaryQuiz @relation(fields: [quizId], references: [id])
+  dictionaryId String
+  dictionary   Dictionary     @relation(fields: [dictionaryId], references: [id])
+  questionType QuestionType
+  answerGiven  String?
+  isCorrect    Boolean
+  timeTakenSec Int
+  askedAt      DateTime       @default(now())
 }
 
 enum QuestionType {

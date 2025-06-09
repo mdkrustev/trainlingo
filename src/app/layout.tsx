@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import './style/globals.css'
-import Providers from '@/components/Providers'
-import HeaderBar from '@/components/HeaderBar'
+import Providers from '@/contexts/Providers'
+import HeaderBar from '@/components/common/HeaderBar'
 import { appName } from '@/utils/config'
 import { cookies } from 'next/headers'
 
