@@ -8,6 +8,9 @@ export const config = {
   region: 'fra1', // Deploy to Frankfurt
 };
 
+export const revalidate = 60; // секунди за презареждане на кеша
+
+
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
 

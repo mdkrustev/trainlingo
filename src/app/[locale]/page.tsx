@@ -7,6 +7,8 @@ import PublicHome from './public'
 import { Suspense } from 'react'
 import { useTranslations } from '@/hooks/useTranslations'
 
+export const dynamic = 'force-static';
+
 export default function Page() {
   const { data: session, status } = useSession()
   const {t} = useTranslations();

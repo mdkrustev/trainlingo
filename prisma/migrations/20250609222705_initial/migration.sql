@@ -20,9 +20,10 @@ CREATE TABLE "User" (
 -- CreateTable
 CREATE TABLE "Topic" (
     "id" TEXT NOT NULL,
-    "youtubeUrl" TEXT,
+    "youtubeVideoId" TEXT,
     "name" TEXT,
     "categoryKey" TEXT,
+    "languageKey" TEXT,
     "ownerId" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
@@ -47,10 +48,11 @@ CREATE TABLE "Dictionary" (
 
 -- CreateTable
 CREATE TABLE "DictionaryToTopic" (
+    "id" SERIAL NOT NULL,
     "topicId" TEXT NOT NULL,
     "dictionaryId" TEXT NOT NULL,
 
-    CONSTRAINT "DictionaryToTopic_pkey" PRIMARY KEY ("topicId","dictionaryId")
+    CONSTRAINT "DictionaryToTopic_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -88,19 +90,16 @@ CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 CREATE UNIQUE INDEX "User_googleId_key" ON "User"("googleId");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "DictionaryToTopic_topicId_key" ON "DictionaryToTopic"("topicId");
-
--- CreateIndex
-CREATE UNIQUE INDEX "DictionaryToTopic_dictionaryId_key" ON "DictionaryToTopic"("dictionaryId");
+CREATE UNIQUE INDEX "DictionaryToTopic_topicId_dictionaryId_key" ON "DictionaryToTopic"("topicId", "dictionaryId");
 
 -- AddForeignKey
 ALTER TABLE "Topic" ADD CONSTRAINT "Topic_ownerId_fkey" FOREIGN KEY ("ownerId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Topic" ADD CONSTRAINT "Topic_id_fkey" FOREIGN KEY ("id") REFERENCES "DictionaryToTopic"("topicId") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "DictionaryToTopic" ADD CONSTRAINT "DictionaryToTopic_topicId_fkey" FOREIGN KEY ("topicId") REFERENCES "Topic"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Dictionary" ADD CONSTRAINT "Dictionary_id_fkey" FOREIGN KEY ("id") REFERENCES "DictionaryToTopic"("dictionaryId") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "DictionaryToTopic" ADD CONSTRAINT "DictionaryToTopic_dictionaryId_fkey" FOREIGN KEY ("dictionaryId") REFERENCES "Dictionary"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "DictionaryQuiz" ADD CONSTRAINT "DictionaryQuiz_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

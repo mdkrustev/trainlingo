@@ -22,63 +22,63 @@ export function usePaginatedRequest<T>(
   const [pageSize] = useState(initialPageSize);
   const [pageCount, setPageCount] = useState<number>(0);
 
-  const fetchData = useCallback(
-    async (pageNumber: number) => {
-      setLoading(true);
-      try {
-        // Конструиране на URL-то
-        const separator = baseUrl.includes('?') ? '&' : '?';
-        const finalUrl = `${baseUrl}${separator}page=${pageNumber}&pageSize=${pageSize}`;
+  const fetchData = async (pageNumber: number, cacheed: boolean) => {
+    setLoading(true);
+    try {
+      const separator = baseUrl.includes('?') ? '&' : '?';
+      const finalUrl = `${baseUrl}${separator}page=${pageNumber}&pageSize=${pageSize}`;
 
-        console.log('Fetching from:', finalUrl);
+      console.log('Fetching from:', finalUrl);
 
-        const response = await fetch(finalUrl, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
+      const response = await fetch(finalUrl, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        cache: cacheed ? 'force-cache' : 'default'
+      });
 
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const result = await response.json();
-
-        console.log('Response data:', result);
-
-        // Осигури data и pageCount
-        const dataArray = Array.isArray(result.data) ? result.data : Array.isArray(result) ? result : [];
-        const totalPages = result.pageCount ?? result.totalPages ?? Math.ceil(dataArray.length / pageSize);
-
-        setData(dataArray);
-        setPageCount(totalPages); // Записваме pageCount
-        setError(null);
-
-        if (pageNumber !== page) {
-          setPage(pageNumber);
-        }
-      } catch (err) {
-        setError(err as Error);
-        console.error('Fetch error:', err);
-      } finally {
-        setLoading(false);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
-    },
-    [baseUrl, pageSize, page]
-  );
+
+      const result = await response.json();
+
+      console.log('Response data:', result);
+
+      const dataArray = Array.isArray(result.data)
+        ? result.data
+        : Array.isArray(result)
+        ? result
+        : [];
+
+      const totalPages =
+        result.pageCount ?? result.totalPages ?? Math.ceil(dataArray.length / pageSize);
+
+      setData(dataArray);
+      setPageCount(totalPages);
+      setError(null);
+    } catch (err) {
+      setError(err as Error);
+      console.error('Fetch error:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const refresh = useCallback(
     (newPage?: number) => {
       const targetPage = newPage ?? page;
-      fetchData(targetPage);
+      setPage(targetPage); // trigger useEffect
+      fetchData(targetPage, false)
     },
-    [fetchData, page]
+    [page]
   );
 
   useEffect(() => {
-    fetchData(initialPage);
-  }, [fetchData, initialPage]);
+    fetchData(page, true);
+    console.log(page)
+  }, [page, baseUrl, pageSize]);
 
   return { data, loading, error, page, pageSize, pageCount, refresh };
 }

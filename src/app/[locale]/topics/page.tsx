@@ -14,6 +14,9 @@ import { usePaginatedRequest } from "@/hooks/usePaginatedRequest"
 import { Topic } from "@prisma/client";
 import YouTubeThumbnail from "@/components/youtube/YouTubeThumbnail";
 
+export const dynamic = 'force-static';
+
+
 export default function Topics() {
     const { t } = useTranslations();
     const [modalOpen, setModalOpen] = useState<boolean>(false)
@@ -66,7 +69,7 @@ export default function Topics() {
     };
 
     const [page, setPage] = useState(1);
-    const { data, pageCount, pageSize } = usePaginatedRequest<Topic>(
+    const { data, pageCount, pageSize, refresh } = usePaginatedRequest<Topic>(
         '/api/topics',
         page,
         5
@@ -74,8 +77,12 @@ export default function Topics() {
 
 
     useEffect(() => {
-        console.log(data)
-    }, [data])
+        if (!modalOpen) {
+            refresh(1)
+        }
+    }, [modalOpen])
+
+    useEffect(() => {refresh(page)}, [page])
 
     const handleClick = (videoId: string | null) => {
         console.log("Кликнато видео:", videoId);
@@ -97,8 +104,8 @@ export default function Topics() {
 
                 <div className="flex justify-end">
                     <CustomButton onClick={() => { setModalOpen(true) }} className="cursor-pointer mt-2.5" size={14} icon={<PlusCircleIcon />} type="success">
-                    {t.action.addItem}
-                </CustomButton>
+                        {t.action.addItem}
+                    </CustomButton>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 mt-2.5">
