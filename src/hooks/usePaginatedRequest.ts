@@ -72,7 +72,7 @@ export function usePaginatedRequest<T>(
       setPage(targetPage); // trigger useEffect
       fetchData(targetPage, false)
     },
-    [page]
+    [page, fetchData]
   );
 
   useEffect(() => {

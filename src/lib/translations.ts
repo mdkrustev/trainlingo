@@ -4,11 +4,21 @@ export const translations = {
     navi: {
       home: "Home",
       topics: "Topics",
+      topic: "Topic",
       videos: "Videos",
       dictionary: "Dictionary",
       quiz: "Quiz"
     },
     loading: "Loading",
+    error: "Error",
+    noDataFound: "No Data Found",
+    topic: {
+      details: "Topic details",
+      category: "Category",
+      language: "Language",
+      words: "Words",
+      noWordsFound: "No words found"
+    },
     auth: {
       logIn: "Log In",
       logOut: "Log Out",

@@ -1,38 +1,27 @@
-'use client';
+// ./src/components/youtube/YouTubeThumbnail.tsx
 
-import { FC } from 'react';
+import Image from 'next/image';
 
 interface YouTubeThumbnailProps {
-  youtubeVideoId: string | null;
-  className?: string;
-  onClick?: () => void;
+    youtubeVideoId: string | null;
+    onClick?: () => void;
+    className?: string;
 }
 
-const YouTubeThumbnail: FC<YouTubeThumbnailProps> = ({
-  youtubeVideoId,
-  className = '',
-  onClick,
-}) => {
-  const thumbnailUrl = `https://img.youtube.com/vi/${youtubeVideoId}/hqdefault.jpg`; 
+export default function YouTubeThumbnail({ youtubeVideoId, onClick, className }: YouTubeThumbnailProps) {
+    if (!youtubeVideoId) return null;
 
-  return (
-    <div
-      className={`youtube-thumbnail ${className}`}
-      onClick={onClick}
-      role="button"
-      tabIndex={0}
-      aria-label={`Preview of YouTube video ${youtubeVideoId}`}
-      style={{ cursor: onClick ? 'pointer' : 'default' }}
-    >
-      <img
-        src={thumbnailUrl}
-        alt={`Thumbnail for YouTube video ID: ${youtubeVideoId}`}
-        loading="lazy"
-        width="100%"
-        height="auto"
-      />
-    </div>
-  );
-};
+    const thumbnailUrl = `https://i.ytimg.com/vi/${youtubeVideoId}/maxresdefault.jpg`; 
 
-export default YouTubeThumbnail;
+    return (
+        <div className="relative w-full pt-[56.25%] cursor-pointer" onClick={onClick}>
+            <Image
+                src={thumbnailUrl}
+                alt={`YouTube video ${youtubeVideoId}`}
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className={`object-cover rounded ${className || ''}`}
+            />
+        </div>
+    );
+}

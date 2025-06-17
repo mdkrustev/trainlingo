@@ -16,7 +16,7 @@ export async function GET(request: Request) {
 
   // Задай стойности по подразбиране
   const page = parseInt(searchParams.get("page") || "1", 10);
-  const pageSize = parseInt(searchParams.get("pageSize") || "10", 10);
+  const pageSize = parseInt(searchParams.get("limit") || "10", 10);
 
   const { user, error, status } = await authenticate();
 
