@@ -32,7 +32,7 @@ export default function TopicDetailPage() {
     const items: BreadcrumbItem[] = [
         [`/${locale}`, t.navi.home, <HomeIcon key="home_ico" size={16} />],
         [`/${locale}/topics`, t.navi.topics],
-        ['', data?.name || t.navi.topic], // сега data е налично
+        ['', data?.name || t.topic.title], // сега data е налично
     ];
 
     if (loading) return <p>{t.loading}...</p>;
@@ -53,9 +53,9 @@ export default function TopicDetailPage() {
             </div>
 
             {/* Разпределение на видеото и списъка */}
-            <div className="flex mt-6 space-x-6">
+            <div className="mt-6 space-y-6 md:space-y-0 md:space-x-6 flex flex-col md:flex-row">
                 {/* Лява страна - YouTube видео */}
-                <div className="w-1/2">
+                <div className="w-full md:w-1/2">
                     <YouTubePlayer youtubeVideoId={data.youtubeVideoId} />
                     <ul className="space-y-3 text-sm text-gray-700 mt-3 bg-white p-2.5 border-2 rounded-[10px]">
                         <li className="flex items-center border-b pb-2">
@@ -92,7 +92,7 @@ export default function TopicDetailPage() {
                 </div>
 
                 {/* Дясна страна - Списък с думи */}
-                <div className="w-1/2 bg-gray-50 p-4 rounded-md shadow-inner">
+                <div className="w-full md:w-1/2 bg-gray-50 p-4 rounded-md shadow-inner">
                     <h3 className="text-lg font-semibold mb-4">{t.topic.words}</h3>
                     <p className="text-gray-500">{t.topic.noWordsFound}</p>
                 </div>

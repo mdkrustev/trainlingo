@@ -4,15 +4,16 @@ export const translations = {
     navi: {
       home: "Home",
       topics: "Topics",
-      topic: "Topic",
       videos: "Videos",
       dictionary: "Dictionary",
       quiz: "Quiz"
     },
+    
     loading: "Loading",
     error: "Error",
     noDataFound: "No Data Found",
     topic: {
+      title: "Topic",
       details: "Topic details",
       category: "Category",
       language: "Language",
