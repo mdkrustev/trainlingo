@@ -27,11 +27,16 @@ export function usePaginatedRequest<T>(
   const [time, setTime] = useState<number>(Date.now());
   const searchParams = useSearchParams();
   const router = useRouter();
-  const cacheed = true;
+  
 
 
   const load = useCallback(
+
+    
     async (currentTime: number, urlPage: string | null) => {
+      
+      const cacheed = true;
+
       setLoading(true);
       setError(null);
       if (urlPage && parseInt(urlPage))
@@ -63,7 +68,7 @@ export function usePaginatedRequest<T>(
   useEffect(() => {
     console.log(time)
     load(time, searchParams.get('page'));
-  }, [searchParams, time]);
+  }, [searchParams, time, load]);
 
   const changeUrl = (newPage:number) => {
     const searchParams = new URLSearchParams(window.location.search);
